@@ -9,3 +9,5 @@ topics covers include:
 - computer memory
 - cache hit and cache miss
 - 
+
+right now all the files are in the masters branch. im still figuring out how to merge it into the main branch
