@@ -1,0 +1,8 @@
+==============================================================================================
+== Test 6: Four Allocs Free Ver2
+== Allocates 4 times again but frees in a different order. This prevents some
+== merging and requires cases of merging above/below blocks.
+Running test...
+Expected output is in file 'test_results/raw/project_4-06-expected.tmp'
+Actual output is in file 'test_results/raw/project_4-06-actual.tmp'
+Test PASSED

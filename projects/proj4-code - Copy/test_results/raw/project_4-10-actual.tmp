@@ -1,0 +1,149 @@
+{
+        // Stress testing with many malloc()'s / free()'s. More thoroughly
+        // tests combinations of calls and sequences. Implementations that
+        // may have appeared correct in simple tests may buckle under such
+        // added stress.
+
+        void *ptr[16] = {};
+        int len = 0;
+
+        ptr[len++] = el_malloc(128);
+        ptr[len++] = el_malloc(256);
+        ptr[len++] = el_malloc(64);
+        ptr[len++] = el_malloc(200);
+        printf("MALLOC 1-4\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+
+        el_free(ptr[2]);
+        ptr[2] = NULL;
+        printf("\nFREE 2\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+
+        ptr[len++] = el_malloc(64);
+        printf("\nMALLOC 5\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+
+        el_free(ptr[1]);
+        ptr[1] = NULL;
+        printf("\nFREE 1\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+
+        ptr[len++] = el_malloc(50);
+        ptr[len++] = el_malloc(50);
+        printf("\nMALLOC 6-7\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+
+        ptr[len++] = el_malloc(100);
+        printf("\nMALLOC 8\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+
+        el_free(ptr[5]);
+        ptr[5] = NULL;
+        el_free(ptr[0]);
+        ptr[0] = NULL;
+        el_free(ptr[6]);
+        ptr[6] = NULL;
+        printf("\nFREE 5,0,6\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+
+        ptr[len++] = el_malloc(200);
+        ptr[len++] = el_malloc(512);
+        ptr[len++] = el_malloc(16);
+        ptr[len++] = el_malloc(32);
+        printf("\nMALLOC 9,10,11\n");
+        el_print_stats();
+        printf("\n");
+        printf("POINTERS\n");
+        print_ptrs(ptr, len);
+}
+MALLOC 1-4
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3288}
+  [  0] head @ 0x600000000328 {state: a  size:  3248}
+        foot @ 0x600000000ff8 {size:  3248}
+USED LIST: {length:   4  bytes:   808}
+  [  0] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  1] head @ 0x6000000001d0 {state: u  size:    64}
+        foot @ 0x600000000230 {size:    64}
+  [  2] head @ 0x6000000000a8 {state: u  size:   256}
+        foot @ 0x6000000001c8 {size:   256}
+  [  3] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: 0x6000000001f0
+ptr[ 3]: 0x600000000258
+
+FREE 2
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3392}
+  [  0] head @ 0x6000000000a8 {state: u  size:   360}
+        foot @ 0x600000000230 {size:   360}
+USED LIST: {length:   3  bytes:   704}
+  [  0] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  1] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+  [  2] head @ 0x10e0d8 {state: E  size:     0}
+        foot @ 0x10e0f8 {size: 1106104}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+
+MALLOC 5
+HEAP STATS (overhead per node: 40)
+heap_start:  0x600000000000
+heap_end:    0x600000001000
+total_bytes: 4096
+AVAILABLE LIST: {length:   1  bytes:  3288}
+  [  0] head @ 0x600000000390 {state: a  size:  3144}
+        foot @ 0x600000000ff8 {size:  3144}
+USED LIST: {length:   4  bytes:   808}
+  [  0] head @ 0x600000000328 {state: u  size:    64}
+        foot @ 0x600000000388 {size:    64}
+  [  1] head @ 0x600000000238 {state: u  size:   200}
+        foot @ 0x600000000320 {size:   200}
+  [  2] head @ 0x600000000000 {state: u  size:   128}
+        foot @ 0x6000000000a0 {size:   128}
+  [  3] head @ 0x10e0d8 {state: E  size:     0}
+        foot @ 0x10e0f8 {size: 1106104}
+
+POINTERS
+ptr[ 0]: 0x600000000020
+ptr[ 1]: 0x6000000000c8
+ptr[ 2]: (nil)
+ptr[ 3]: 0x600000000258
+ptr[ 4]: 0x600000000348

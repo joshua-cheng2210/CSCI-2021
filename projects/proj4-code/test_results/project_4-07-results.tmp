@@ -1,0 +1,8 @@
+==============================================================================================
+== Test 7: Four Allocs Free Ver3
+== Another variation of allocating 4 times then freeing blocks in a different
+== order to examine if merging works properly.
+Running test...
+Expected output is in file 'test_results/raw/project_4-07-expected.tmp'
+Actual output is in file 'test_results/raw/project_4-07-actual.tmp'
+Test PASSED

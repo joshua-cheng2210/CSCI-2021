@@ -1,0 +1,9 @@
+======================================================================================
+== Test 8: Alloc Fails
+== Allocates 4 times, which each succeed. Then attempts to allocate again for a
+== large block which cannot be allocated. el_malloc() should return NULL in this
+== case and the heap remains unchanged.
+Running test...
+Expected output is in file 'test_results/raw/project_4-08-expected.tmp'
+Actual output is in file 'test_results/raw/project_4-08-actual.tmp'
+Test PASSED

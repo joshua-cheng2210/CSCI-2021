@@ -1,0 +1,8 @@
+======================================================================================
+== Test 2: Three Allocs
+== Tests that 3 allocations in a row correctly split off the main block, leaving
+== 4 blocks. Used x 3 + Available x 1.
+Running test...
+Expected output is in file 'test_results/raw/project_4-02-expected.tmp'
+Actual output is in file 'test_results/raw/project_4-02-actual.tmp'
+Test PASSED

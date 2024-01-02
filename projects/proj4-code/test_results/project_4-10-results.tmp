@@ -1,0 +1,9 @@
+==============================================================================================
+== Test 10: Stress Test
+== Stress testing with many malloc()'s and free()'s. More thoroughly tests
+== combinations of calls and sequences. Implementations that may have appeared
+== correct in simple tests may buckle under such added stress.
+Running test...
+Expected output is in file 'test_results/raw/project_4-10-expected.tmp'
+Actual output is in file 'test_results/raw/project_4-10-actual.tmp'
+Test PASSED

@@ -1,0 +1,8 @@
+======================================================================================
+== Test 1: Single Allocation
+== Tests than an allocation correctly splits the first single block into 2
+== blocks, one used and one available
+Running test...
+Expected output is in file 'test_results/raw/project_4-01-expected.tmp'
+Actual output is in file 'test_results/raw/project_4-01-actual.tmp'
+Test PASSED

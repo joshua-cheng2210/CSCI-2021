@@ -1,0 +1,135 @@
+                           _________________
+
+                            HW 03 QUESTIONS
+                           _________________
+
+Write your answers to the questions below directly in this text file to
+prepare for the associated quiz. Credit for the HW is earned by
+completing the online quiz.
+
+
+PROBLEM 1: Two-Pass Input and malloc()
+======================================
+
+  One frequently encounters the following situation when reading files
+  - The file contains some data that is to be read into a dynamically
+    allocated array
+  - There is no indication of how much data is in the file
+
+  C programs commonly use a *two-pass* input strategy to handle this
+  situation
+  1. Read through the file once to count items in the file, then allocate
+     memory for an array of that size
+  2. Back up to the beginning of the file and read data from the file
+     into the array
+
+  The provided program `twopass.c' demonstrates this technique along
+  with several other input / formatting techniques.
+
+
+A
+~
+  Compile and run the `twopass.c' program on the two provided text files
+  `nums1.txt' and `nums2.txt'.  Paste the output the program produces
+  below.
+
+Reading double values from file 'nums1.txt'
+[0] :     1.00 == 1.0000e+00
+[1] :     2.00 == 2.0000e+00
+[2] :     3.00 == 3.0000e+00
+[3] :     4.00 == 4.0000e+00
+[4] :     5.00 == 5.0000e+00
+[5] :     6.00 == 6.0000e+00
+[6] :     7.00 == 7.0000e+00
+[7] :     8.00 == 8.0000e+00
+[8] :     9.00 == 9.0000e+00
+[9] :    10.00 == 1.0000e+01
+
+Reading double values from file 'nums2.txt'
+[0] :     4.35 == 4.3523e+00
+[1] : 37066.25 == 3.7066e+04
+[2] :   307.07 == 3.0707e+02
+[3] :     0.05 == 5.1072e-02
+[4] :   613.85 == 6.1385e+02
+[5] :  9443.33 == 9.4433e+03
+[6] : 84099.99 == 8.4100e+04
+[7] : 28202.73 == 2.8203e+04
+
+B
+~
+  Examine the function `read_all_doubles()' in `twopass.c' and describe
+  which lines/blocks of code carry out the following actions. Use the
+  provided comments in the file as a guide.
+
+  - Opens the file for reading and checks for errors #11
+  - Counts all the doubles in the file #23
+  - Allocates memory for doubles in the file #26
+  - Moves the file read position to the beginning of the file #28
+  - Closes the file when reading is complete #33
+
+C
+~
+  In your answer to the previous problem, you should have identified a
+  use of `malloc()' in `read_all_doubles()'.  Where is this memory
+  `free()''d and why?
+
+  in the main function because the memory will only be freed once the information has been printed out
+
+D
+~
+  Examine how the doubles read from file are printed in the `main()'
+  function. Discuss below the format specifiers used by `printf()' and
+  the width/precision modifiers that are used to get a "table-like"
+  appearance.  You may wish to consult the Manual page on `printf()'
+  such as the one here:
+
+  <https://man7.org/linux/man-pages/man3/printf.3.html>
+
+  %d      - specifies for decimal integers
+  %8.2f   - %8 specifies for printing out 8 characters at a time and .2f specifies for 2 decimal point floating number 
+  %10.4e  - %10 specifies for printing out 10 characters at a time and .4e specifies for 4 deimal point floating number
+
+
+PROBLEM 2: Binary Files
+=======================
+
+  Examine the `read_items.c' program and the provided input binary file
+  `items.bin'.
+
+A
+~
+  Open the `items.bin' file with a text editor (make sure not to modify any
+  of the file's contents). What do you see? Are there any parts of the file
+  that look understandable to you?
+
+  no beacuse it is in binary?
+
+B
+~
+  Compile the `read_items.c' program and run it on the provided binary
+  file `items.bin'. Paste the output below. How does this output relate
+  to what you saw when you opened the file with an editor?
+
+82 of Item 'Hydra'
+7 of Item 'Arrow'
+2 of Item 'Swan'
+1 of Item 'Flame'
+3 of Item 'Pearl'
+14 of Item 'Orchid'
+9 of Item 'Staff'
+4 of Item 'Looking Glass'
+12 of Item 'Tempest'
+1 of Item 'Lamp Post'
+
+C
+~
+  Examine the body of the `while' loop in the `main()' function. When working
+  with binary files, we use `fread()' rather than `fscanf()' to read in a
+  string value. However, we need information about the string's length so we
+  know how many bytes to read.
+
+  How did we learn of the length of the string representing each item's name in
+  the binary file? What two things does this length help us do?
+
+fscanf() is used for reading data from a file and converting it to a specific data type with the format specifiers provided
+freadf() is used for reading binary data and you can specify the amount of bits it is reading at a time
